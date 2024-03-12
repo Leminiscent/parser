@@ -2,6 +2,8 @@ import nltk
 import sys
 from nltk.tokenize import word_tokenize
 
+nltk.download("punkt")
+
 TERMINALS = """
 Adj -> "country" | "dreadful" | "enigmatical" | "little" | "moist" | "red"
 Adv -> "down" | "here" | "never"
