@@ -70,15 +70,37 @@ def preprocess(sentence):
 def np_chunk(tree):
     """
     Return a list of all noun phrase chunks in the sentence tree.
+    A noun phrase chunk is defined as an NP that does not contain any other NPs within it.
     """
+    np_chunks = []
 
-    def is_np_chunk(t):
-        return t.label() == "NP" and not any(c.label() == "NP" for c in t)
+    # Recursively find NP chunks without nested NPs
+    def find_np_chunks(t):
+        # Assume the current NP is valid unless a nested NP is found
+        is_valid_np = t.label() == "NP"
+        for child in t:
+            # Recursively check children; if a child is an NP, the current NP is not valid
+            if isinstance(child, nltk.Tree):
+                if child.label() == "NP":
+                    is_valid_np = False
+                else:
+                    find_np_chunks(child)
+        if is_valid_np:
+            np_chunks.append(t)
 
-    chunks = []
-    for subtree in tree.subtrees(is_np_chunk):
-        chunks.append(subtree)
-    return chunks
+    # Start the recursive search from the top of the tree
+    for subtree in tree.subtrees(lambda t: t.label() == "NP"):
+        find_np_chunks(subtree)
+
+    # Filter out the nested NPs, leaving only the highest-level NPs in nested structures
+    final_np_chunks = []
+    for np in np_chunks:
+        if not any(
+            np in list(subtree.subtrees()) for subtree in np_chunks if subtree != np
+        ):
+            final_np_chunks.append(np)
+
+    return final_np_chunks
 
 
 if __name__ == "__main__":
