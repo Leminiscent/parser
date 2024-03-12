@@ -62,7 +62,208 @@ The script defines a set of terminals and non-terminals as part of its grammar. 
 Here's a simple example sentence to try with the script:
 
 ```
-The little red fox jumps over the lazy dog.
+I had a little moist red paint in the palm of my hand.
 ```
 
-After processing, the script will output the parse tree(s) and the noun phrase chunks identified within the sentence.
+After processing, the script will output the parse tree(s) and the noun phrase chunks identified within the sentence:
+
+```
+              S                                                       
+  ____________|______________________                                  
+ |                                   VP                               
+ |    _______________________________|_________________________        
+ |   |                         NP                              |      
+ |   |                _________|__________________             |       
+ |   |               NP                   |       |            |      
+ |   |    ___________|_______________     |       |            |       
+ |   |   |          AdjP             |    |       |            |      
+ |   |   |     ______|____           |    |       |            |       
+ |   |   |    |          AdjP        |    |       |            |      
+ |   |   |    |       ____|____      |    |       |            |       
+ NP  |   |    |      |        AdjP   |    |       NP           PP     
+ |   |   |    |      |         |     |    |    ___|___      ___|___    
+ N   V  Det  Adj    Adj       Adj    N    P  Det      N    P  Det  N  
+ |   |   |    |      |         |     |    |   |       |    |   |   |   
+ i  had  a  little moist      red  paint  in the     palm  of  my hand
+
+Noun Phrase Chunks
+i
+a little moist red paint
+the palm
+              S                                                   
+  ____________|______________________                              
+ |                                   VP                           
+ |    _______________________________|____________                 
+ |   |               NP                           |               
+ |   |    ___________|_______________             |                
+ |   |   |          AdjP             |            PP              
+ |   |   |     ______|____           |     _______|____            
+ |   |   |    |          AdjP        |    |            NP         
+ |   |   |    |       ____|____      |    |    ________|___        
+ NP  |   |    |      |        AdjP   |    |   |   |        PP     
+ |   |   |    |      |         |     |    |   |   |     ___|___    
+ N   V  Det  Adj    Adj       Adj    N    P  Det  N    P  Det  N  
+ |   |   |    |      |         |     |    |   |   |    |   |   |   
+ i  had  a  little moist      red  paint  in the palm  of  my hand
+
+Noun Phrase Chunks
+i
+a little moist red paint
+the palm of my hand
+              S                                                       
+  ____________|______________________                                  
+ |                                   VP                               
+ |    _______________________________|____________                     
+ |   |               NP                           PP                  
+ |   |    ___________|_______________      _______|____                
+ |   |   |          AdjP             |    |            NP             
+ |   |   |     ______|____           |    |    ________|___            
+ |   |   |    |          AdjP        |    |   |   |        PP         
+ |   |   |    |       ____|____      |    |   |   |     ___|___        
+ NP  |   |    |      |        AdjP   |    |   |   |    |       NP     
+ |   |   |    |      |         |     |    |   |   |    |    ___|___    
+ N   V  Det  Adj    Adj       Adj    N    P  Det  N    P  Det      N  
+ |   |   |    |      |         |     |    |   |   |    |   |       |   
+ i  had  a  little moist      red  paint  in the palm  of  my     hand
+
+Noun Phrase Chunks
+i
+a little moist red paint
+my hand
+              S                                                           
+  ____________|______________________                                      
+ |                                   VP                                   
+ |    _______________________________|________________                     
+ |   |               NP                               |                   
+ |   |    ___________|_______________                 |                    
+ |   |   |          AdjP             |                PP                  
+ |   |   |     ______|____           |     ___________|____                
+ |   |   |    |          AdjP        |    |                NP             
+ |   |   |    |       ____|____      |    |        ________|_______        
+ NP  |   |    |      |        AdjP   |    |       NP       |       NP     
+ |   |   |    |      |         |     |    |    ___|___     |    ___|___    
+ N   V  Det  Adj    Adj       Adj    N    P  Det      N    P  Det      N  
+ |   |   |    |      |         |     |    |   |       |    |   |       |   
+ i  had  a  little moist      red  paint  in the     palm  of  my     hand
+
+Noun Phrase Chunks
+i
+a little moist red paint
+the palm
+my hand
+              S                                                           
+  ____________|______________________                                      
+ |                                   VP                                   
+ |    _______________________________|_________________________            
+ |   |                         NP                              |          
+ |   |                _________|__________________             |           
+ |   |               NP                   |       |            |          
+ |   |    ___________|_______________     |       |            |           
+ |   |   |          AdjP             |    |       |            |          
+ |   |   |     ______|____           |    |       |            |           
+ |   |   |    |          AdjP        |    |       |            PP         
+ |   |   |    |       ____|____      |    |       |         ___|___        
+ NP  |   |    |      |        AdjP   |    |       NP       |       NP     
+ |   |   |    |      |         |     |    |    ___|___     |    ___|___    
+ N   V  Det  Adj    Adj       Adj    N    P  Det      N    P  Det      N  
+ |   |   |    |      |         |     |    |   |       |    |   |       |   
+ i  had  a  little moist      red  paint  in the     palm  of  my     hand
+
+Noun Phrase Chunks
+i
+a little moist red paint
+the palm
+my hand
+              S                                                   
+  ____________|______________________                              
+ |                                   VP                           
+ |    _______________________________|____                         
+ |   |                                    NP                      
+ |   |                ____________________|____________            
+ |   |               NP                   |            |          
+ |   |    ___________|_______________     |            |           
+ |   |   |          AdjP             |    |            |          
+ |   |   |     ______|____           |    |            |           
+ |   |   |    |          AdjP        |    |            NP         
+ |   |   |    |       ____|____      |    |    ________|___        
+ NP  |   |    |      |        AdjP   |    |   |   |        PP     
+ |   |   |    |      |         |     |    |   |   |     ___|___    
+ N   V  Det  Adj    Adj       Adj    N    P  Det  N    P  Det  N  
+ |   |   |    |      |         |     |    |   |   |    |   |   |   
+ i  had  a  little moist      red  paint  in the palm  of  my hand
+
+Noun Phrase Chunks
+i
+a little moist red paint
+the palm of my hand
+              S                                                       
+  ____________|______________________                                  
+ |                                   VP                               
+ |    _______________________________|____                             
+ |   |                                    NP                          
+ |   |                ____________________|____________                
+ |   |               NP                   |            |              
+ |   |    ___________|_______________     |            |               
+ |   |   |          AdjP             |    |            NP             
+ |   |   |     ______|____           |    |    ________|___            
+ |   |   |    |          AdjP        |    |   |   |        PP         
+ |   |   |    |       ____|____      |    |   |   |     ___|___        
+ NP  |   |    |      |        AdjP   |    |   |   |    |       NP     
+ |   |   |    |      |         |     |    |   |   |    |    ___|___    
+ N   V  Det  Adj    Adj       Adj    N    P  Det  N    P  Det      N  
+ |   |   |    |      |         |     |    |   |   |    |   |       |   
+ i  had  a  little moist      red  paint  in the palm  of  my     hand
+
+Noun Phrase Chunks
+i
+a little moist red paint
+my hand
+              S                                                           
+  ____________|______________________                                      
+ |                                   VP                                   
+ |    _______________________________|____                                 
+ |   |                                    NP                              
+ |   |                          __________|________________________        
+ |   |                         NP                          |       |      
+ |   |                _________|__________________         |       |       
+ |   |               NP                   |       |        |       |      
+ |   |    ___________|_______________     |       |        |       |       
+ |   |   |          AdjP             |    |       |        |       |      
+ |   |   |     ______|____           |    |       |        |       |       
+ |   |   |    |          AdjP        |    |       |        |       |      
+ |   |   |    |       ____|____      |    |       |        |       |       
+ NP  |   |    |      |        AdjP   |    |       NP       |       NP     
+ |   |   |    |      |         |     |    |    ___|___     |    ___|___    
+ N   V  Det  Adj    Adj       Adj    N    P  Det      N    P  Det      N  
+ |   |   |    |      |         |     |    |   |       |    |   |       |   
+ i  had  a  little moist      red  paint  in the     palm  of  my     hand
+
+Noun Phrase Chunks
+i
+a little moist red paint
+the palm
+my hand
+              S                                                           
+  ____________|______________________                                      
+ |                                   VP                                   
+ |    _______________________________|____                                 
+ |   |                                    NP                              
+ |   |                ____________________|________________                
+ |   |               NP                   |                |              
+ |   |    ___________|_______________     |                |               
+ |   |   |          AdjP             |    |                |              
+ |   |   |     ______|____           |    |                |               
+ |   |   |    |          AdjP        |    |                NP             
+ |   |   |    |       ____|____      |    |        ________|_______        
+ NP  |   |    |      |        AdjP   |    |       NP       |       NP     
+ |   |   |    |      |         |     |    |    ___|___     |    ___|___    
+ N   V  Det  Adj    Adj       Adj    N    P  Det      N    P  Det      N  
+ |   |   |    |      |         |     |    |   |       |    |   |       |   
+ i  had  a  little moist      red  paint  in the     palm  of  my     hand
+
+Noun Phrase Chunks
+i
+a little moist red paint
+the palm
+my hand
+```
